@@ -10,4 +10,10 @@
       <PackageReference Include="Ocelot" Version="16.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="certificado-desenv\certificate.pfx">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

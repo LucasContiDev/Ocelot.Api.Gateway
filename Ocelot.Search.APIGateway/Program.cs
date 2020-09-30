@@ -1,4 +1,5 @@
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -18,6 +19,18 @@ namespace WebApplication
                 {
                     config.AddJsonFile(Path.Combine("Web.Bff.Twitter.Search", "configuration.json"));
                 })
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.ConfigureKestrel((o) =>
+                        {
+                            o.ConfigureHttpsDefaults(options =>
+                            {
+                                options.ServerCertificate = new X509Certificate2(File.ReadAllBytes("./certificado-desenv/certificate.pfx"), "senhacertitau");
+                            } );
+                        }
+                    );
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("https://*:5001;http://*:5000");
+                });
     }
 }
