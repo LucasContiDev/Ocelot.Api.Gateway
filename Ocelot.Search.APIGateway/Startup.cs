@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -53,7 +49,7 @@ namespace WebApplication
                 };
                 o.RequireHttpsMetadata = false;
             });
-            
+            services.AddCors();
             services.AddOcelot(_configuration);
         }
 
@@ -64,6 +60,13 @@ namespace WebApplication
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseCors(opt =>
+            {
+                opt.AllowAnyOrigin();
+                opt.AllowAnyMethod();
+                opt.AllowAnyHeader();
+            });
 
             app.UseOcelot().Wait();
         }

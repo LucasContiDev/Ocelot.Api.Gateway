@@ -14,21 +14,20 @@
     },
     {
       "DownstreamPathTemplate": "/{version}/TwitterMessages",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5011
+          "Host": "192.168.15.156",
+          "Port": 5010
         }
       ],
       "UpstreamPathTemplate": "/{version}/TwitterMessages",
       "UpstreamHttpMethod": [ "POST", "GET" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TwitterSearchKey",
-        "AllowedScopes": ["profile email"] 
+        "AllowedScopes": ["profile email", "openid profile email"] 
       }
     }
-
   ],
   "GlobalConfiguration": {
     "BaseUrl": "https://localhost:5001"

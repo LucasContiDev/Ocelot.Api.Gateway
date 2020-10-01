@@ -16,4 +16,12 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Update="Web.Bff.Twitter.Search\configuration.json">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
